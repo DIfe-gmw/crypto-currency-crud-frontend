@@ -32,12 +32,12 @@ class ViewCurrencyComponent extends Component {
                             <div>{this.state.currency.description}</div>
                         </div>
                         <div className="row">
-                            <label>Cotação (R$): </label>
-                            <div>{this.state.currency.value}</div>
+                            <label>Cotação: </label>
+                            <div>{"R$" + this.state.currency.value}</div>
                         </div>
                         <div className="row">
                             <label>Status: </label>
-                            <div>{this.state.currency.status ? "Ativa" : "Inativa"}</div>
+                            <div>{this.state.currency.active ? "Ativa" : "Inativa"}</div>
                         </div>
                         <button onClick={() => { this.props.history.push('/list-currency') }} className="btn btn-success">Voltar</button>
                     </div>

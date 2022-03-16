@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component , useState} from 'react'
 import CurrencyService from '../services/CurrencyService';
 
 class CreateCurrencyComponent extends Component {
@@ -9,11 +9,10 @@ class CreateCurrencyComponent extends Component {
             id: this.props.match.params.id,
             name: '',
             description: '',
-            value: ''
+            value: '',
+            status: ''
         }
-        this.changeNameHandler = this.changeNameHandler.bind(this);
-        this.changeDescriptionHandler = this.changeDescriptionHandler.bind(this);
-        this.changeValueHandler = this.changeValueHandler.bind(this);
+        this.changeHandler = this.changeHandler.bind(this);
         this.saveOrUpdateCurrency = this.saveOrUpdateCurrency.bind(this);
     }
 
@@ -28,7 +27,8 @@ class CreateCurrencyComponent extends Component {
                     {
                         name: currency.name,
                         description: currency.description,
-                        value: currency.value
+                        value: currency.value,
+                        active: currency.active
                     }
                 );
             })
@@ -38,7 +38,7 @@ class CreateCurrencyComponent extends Component {
     saveOrUpdateCurrency = (e) => {
         e.preventDefault();
 
-        let currency = {name: this.state.name, description: this.state.description, value: this.state.value};
+        let currency = {name: this.state.name, description: this.state.description, value: this.state.value, active: this.state.active};
         console.log('currency => ' + JSON.stringify(currency));
 
         if(this.state.id === "add") {
@@ -53,16 +53,9 @@ class CreateCurrencyComponent extends Component {
         }
     }
 
-    changeNameHandler=(event) => {
-        this.setState({name: event.target.value})
-    }
-
-    changeDescriptionHandler=(event) => {
-        this.setState({description: event.target.value})
-    }
-
-    changeValueHandler=(event) => {
-        this.setState({value: event.target.value})
+    changeHandler(event) {
+        const {name,value} = event.target;
+        this.setState({[name]:value});
     }
 
     cancel() {
@@ -89,18 +82,27 @@ class CreateCurrencyComponent extends Component {
                                 <form>
                                     <div className="form-group">
                                         <input placeholder="Nome" name="name" className="form-control"
-                                        value={this.state.name} onChange={this.changeNameHandler}></input><br/>
+                                        value={this.state.name} onChange={this.changeHandler}></input><br/>
                                     </div>
 
                                     <div className="form-group">
                                         <input placeholder="Descrição" name="description" className="form-control"
-                                        value={this.state.description} onChange={this.changeDescriptionHandler}></input><br/>
+                                        value={this.state.description} onChange={this.changeHandler}></input><br/>
                                     </div>
 
                                     <div className="form-group">
                                         <input placeholder="Valor Monetário" name="value" className="form-control"
-                                        value={this.state.value} onChange={this.changeValueHandler}></input>
+                                        value={this.state.value} onChange={this.changeHandler}></input>
                                     </div>
+
+                                    
+                                    <div className="custom-control custom-checkbox checkbox-lg">
+                                        <input onChange={this.changeHandler}
+                                        type="checkbox" className="custom-control-input" id="checkbox" checked={this.state.active}></input>
+                                        <label className="custom-control-label" for="checkbox">Ativar Moeda</label>
+                                    </div>
+
+                                    <br/>
 
                                     <button className="btn btn-success" onClick={this.saveOrUpdateCurrency}>Inserir</button>
                                     
