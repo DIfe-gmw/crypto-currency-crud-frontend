@@ -28,8 +28,6 @@ Abra [http://localhost:3000](http://localhost:3000) para visualizar em seu naveg
 A página irá recarregar quando acontecer alguma mudança no código
 Também é possível observar erros de compilação quando ocorrem.
 
-#
-
 ## Dependencies
 
 > NPM v8.5\
