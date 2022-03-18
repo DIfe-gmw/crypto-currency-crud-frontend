@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
+import {FaJava} from 'react-icons/fa'
 
 import {
     Container,
@@ -30,6 +31,7 @@ function Navbar() {
 
             default:
                 localStorage.setItem("access", "admin");
+                toast.info("Você entrou em sua conta.");
                 setIsAdmin(true);
                 break;
         }

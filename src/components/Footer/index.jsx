@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Container, Title, Subtitle } from "./styles";
+import { FaJava } from "react-icons/fa"
 
 function Footer() {
   return (

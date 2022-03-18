@@ -7,7 +7,7 @@ export const Container = styled.div`
   align-items: center;
   background-color: #222;
   width: 100vw;
-  padding-top: 150px;
+  padding-top: 100px;
   min-height: 100vh;
   font-family: 'Trebuchet MS', sans-serif;
 `;

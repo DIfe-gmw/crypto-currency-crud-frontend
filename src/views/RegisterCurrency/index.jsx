@@ -3,7 +3,7 @@ import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 import CurrencyService from "../../services/CurrencyService";
 
-import { Input, Button,  FormContainer, Container, Body, Title, Subtitle, ReactRouterImage } from "./styles";
+import { Input, Button,  FormContainer, Container, Body, Title } from "./styles";
 
 
 class RegisterCurrency extends Component {
@@ -59,9 +59,8 @@ class RegisterCurrency extends Component {
         console.log('currency => ' + JSON.stringify(currency));
 
         if(this.state.id === "add") {
-            CurrencyService.createCurrency(currency).then(res => {
-                this.props.history.push('/list-currency');
-            })
+            CurrencyService.createCurrency(currency);
+            this.props.history.push('/list-currency');
         } 
         else {
             CurrencyService.updateCurrency(currency, this.state.id).then(res => {
@@ -76,6 +75,15 @@ class RegisterCurrency extends Component {
         }
         else {
             return <Title className="text-center">Atualizar Moeda</Title>
+        }
+    }
+
+    getButton() {
+        if(this.state.id === "add") {
+            return <Button className="btn btn-success" onClick={this.saveOrUpdateCurrency}>Inserir</Button>
+        }
+        else {
+            return <Button className="btn btn-success" onClick={this.saveOrUpdateCurrency}>Editar</Button>
         }
     }
 
@@ -101,8 +109,8 @@ class RegisterCurrency extends Component {
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor="description" name="description" className="form-label sr-only">Senha</label>
-                                    <Input onChange={this.eventHandler} value={this.state.description}
+                                    <label htmlFor="description" name="description" className="form-label sr-only">Descrição</label>
+                                    <Input onChange={this.eventHandler} value={this.state.description} maxLength="204"
                                     placeholder="Descrição" className="form-control" name="description" id="description" required/>
                                 </div>
 
@@ -119,7 +127,7 @@ class RegisterCurrency extends Component {
                                 </div>
 
                                 <br/>
-                                <Button className="btn btn-success" onClick={this.saveOrUpdateCurrency}>Inserir</Button>
+                                {this.getButton()}
                             </form>
                         </div>
                     </FormContainer>

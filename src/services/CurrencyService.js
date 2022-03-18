@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const CURRENCY_API_BASE_URL = "http://localhost:8080/api/v1/currency";
 
@@ -9,7 +10,12 @@ class CurrencyService {
     }
 
     createCurrency(currency) {
-        return axios.post(CURRENCY_API_BASE_URL, currency);
+        if(currency.name.length != 0 && currency.description.length != 0 && currency.value.length != 0) {
+            return axios.post(CURRENCY_API_BASE_URL, currency);
+        }
+        else {
+            toast.error("Dados Inválidos.");
+        }
     }
 
     getCurrencyById(currencyId) {

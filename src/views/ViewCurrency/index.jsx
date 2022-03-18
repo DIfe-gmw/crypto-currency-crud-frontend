@@ -20,6 +20,8 @@ class ViewCurrency extends Component {
     componentDidMount() {
         CurrencyService.getCurrencyById(this.state.id).then(res => {
             this.setState({currency: res.data});
+            this.setState({createdAt: this.state.currency.createdAt.replace("T"," ")});
+            this.setState({updatedAt: this.state.currency.updatedAt.replace("T"," ")});
         })
     }
 
@@ -31,9 +33,9 @@ class ViewCurrency extends Component {
                     <div className="container"><br/>
                     <Title className="text-center text-light">Detalhes da Moeda</Title>
 
-                        <Subtitle>Nome</Subtitle>
+                        <Subtitle>Nome e Cotação (R$)</Subtitle>
                         <Box className="text-light bg-dark card col-md-6 offset-md-3">
-                            <div className="card-body">{this.state.currency.name}</div>    
+                            <div className="card-body">{this.state.currency.name}|R${this.state.currency.value}</div>    
                         </Box><br/>
 
                         <Subtitle>Descrição</Subtitle>
@@ -43,19 +45,23 @@ class ViewCurrency extends Component {
 
                         <Subtitle>Criada em:</Subtitle>
                         <Box className="text-light bg-dark card col-md-6 offset-md-3">
-                            <div className="card-body">{this.state.currency.createdAt}</div>
+                            <div className="card-body">{this.state.createdAt}</div>
                         </Box><br/>
 
                         <Subtitle>Última atualização:</Subtitle>
                         <Box className="text-light bg-dark card col-md-6 offset-md-3">
-                            <div className="card-body">{this.state.currency.createdAt}</div>
+                            <div className="card-body">{this.state.updatedAt}</div>
                         </Box><br/>
 
                         <Subtitle>Status:</Subtitle>
-                        <Box className="text-light bg-dark card col-md-6 offset-md-3">
+                        <Box className={
+                            this.state.currency.active 
+                            ? "text-light bg-success card col-md-6 offset-md-3"
+                            : "text-light bg-dark card col-md-6 offset-md-3"
+                        }>
                             <div className="card-body">{this.state.currency.active ? "Ativa" : "Inativa"}</div>
                         </Box><br/>
-
+                        
                         </div>
                     </Body>
 

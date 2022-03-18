@@ -3,9 +3,8 @@ import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 import SearchBar from "../../components/SearchBar";
 import CurrencyService from "../../services/CurrencyService";
+import { FaSearch, FaTrash, FaPen } from 'react-icons/fa';
 import { TableHTML, Button, Container, Body, Title, Subtitle, ReactRouterImage } from "./styles";
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-//import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 class ListCurrency extends Component {
     constructor(props) {
@@ -82,9 +81,9 @@ class ListCurrency extends Component {
                                         <td>{currency.name}</td>
                                         <td>{currency.value}</td>
                                         <td>
-                                            <Button onClick={() => this.updateCurrency(currency.id)} className="btn btn-lg btn-info ml-4">E</Button>
-                                            <Button onClick={() => this.deleteCurrency(currency.id)} className="btn btn-lg btn-danger ml-4">X</Button>
-                                            <Button onClick={() => this.viewCurrency(currency.id)} className="btn btn-lg btn-primary btn-info ml-4 mr-4">D</Button>
+                                            <Button onClick={() => this.updateCurrency(currency.id)} className="btn btn-lg btn-info ml-4"><FaPen/></Button>
+                                            <Button onClick={() => this.deleteCurrency(currency.id)} className="btn btn-lg btn-danger ml-4"><FaTrash/></Button>
+                                            <Button onClick={() => this.viewCurrency(currency.id)} className="btn btn-lg btn-primary btn-info ml-4 mr-4"><FaSearch/></Button>
                                         </td>
                                     </tr>
                                 )
