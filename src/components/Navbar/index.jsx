@@ -54,8 +54,8 @@ function Navbar() {
             <AnchorsHolder>
             <Anchor href="/home">Página Inicial</Anchor>
             <Anchor href="/list-currency">Listar Moedas</Anchor>
-            <Anchor href="/list-currency">Registrar Moeda</Anchor>
-            <Button onClick={onClick}>{isAdmin ? "Logout" : "Login"}</Button>
+            <Anchor href="/register-currency/add">Registrar Moeda</Anchor>
+            <Button onClick={onClick}>{isAdmin ? "Sair" : "Entrar"}</Button>
             </AnchorsHolder>
         </Container>
     );

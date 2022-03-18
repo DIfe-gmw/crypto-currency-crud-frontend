@@ -2,6 +2,8 @@
 import Admin from "../views/Admin";
 import Home from "../views/Home";
 import ListCurrency from "../views/ListCurrency";
+import RegisterCurrency from "../views/RegisterCurrency";
+import ViewCurrency from "../views/ViewCurrency";
 
 const routing = {
   admin: [
@@ -12,8 +14,18 @@ const routing = {
     },
     {
       path: "/list-currency",
-      name: "Listar Moedas",
-      component: ListCurrency
+      name: "ListCurrency",
+      component: ListCurrency,
+    },
+    {
+      path: "/register-currency/:id",
+      name: "RegisterCurrency",
+      component: RegisterCurrency,
+    },
+    {
+      path: "/view-currency/:id",
+      name: "ViewCurrency",
+      component: ViewCurrency,
     }
   ],
   public: [

@@ -13,7 +13,7 @@ export const Container = styled.div`
 `;
 
 export const Body = styled.section`
-  display:flex;
+  width: 100%;
   padding: 20px 60px;
   text-align: center;
   font-family: 'Courier New', monospace;
@@ -42,31 +42,18 @@ export const ReactRouterImage = styled.div`
   }
 `;
 
+export const FormContainer = styled.div`
+    border-radius:20px;
+    font-family: 'Trebuchet MS', sans-serif;
+`;
+
+export const Input = styled.input`
+    font-size: 16px;
+    border-radius:5px;
+`;
+
 export const Button = styled.button`
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
+    font-size:17px;
+    font-family: Arial;
 `;
 
-
-export const TableHTML = styled.table`
-    display:block;
-    flex-direction:column;
-    float: center;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    height: 50vh;
-    border-radius: 20px;
-    ::-webkit-scrollbar {
-    width: 20px;
-    }
-
-    ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey;
-    border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-    background: #1f1f1f;
-    border-radius: 10px;
-    }
-`;

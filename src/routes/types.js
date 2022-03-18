@@ -10,7 +10,7 @@ export const AdminRoute = ({ component: Component, ...rest }) => (
         <Component {...props} />
       ) : (
         <>
-          {toast.error("Oops, you don't have access here!")}
+          {toast.error("Oops, você não tem acesso aqui.")}
           <Redirect
             to={{ pathname: "/home", state: { from: props.location } }}
           />
