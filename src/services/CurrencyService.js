@@ -2,6 +2,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const CURRENCY_API_BASE_URL = "http://localhost:8080/api/v1/currency";
+const regexOnlyNumbers = /^\d+(\.\d+)*$/
 
 class CurrencyService {
 
@@ -10,11 +11,12 @@ class CurrencyService {
     }
 
     createCurrency(currency) {
-        if(currency.name.length != 0 && currency.description.length != 0 && currency.value.length != 0) {
+        if(currency.name.length !== 0 && currency.description.length !== 0 && currency.value.length !== 0 && regexOnlyNumbers.test(currency.value)) {
             return axios.post(CURRENCY_API_BASE_URL, currency);
         }
         else {
             toast.error("Dados Inválidos.");
+            throw "Invalid data.";
         }
     }
 
@@ -23,7 +25,13 @@ class CurrencyService {
     }
 
     updateCurrency(currency, currencyId) {
-        return axios.put(CURRENCY_API_BASE_URL + '/' + currencyId, currency);
+        if(currency.name.length !== 0 && currency.description.length !== 0 && currency.value.length !== 0 && regexOnlyNumbers.test(currency.value)) {
+            return axios.put(CURRENCY_API_BASE_URL + '/' + currencyId, currency);
+        }
+        else {
+            toast.error("Dados Inválidos.");
+            throw "Invalid data.";
+        }
     }
 
     deleteCurrency(currencyId) {

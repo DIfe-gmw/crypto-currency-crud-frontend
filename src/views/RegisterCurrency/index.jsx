@@ -56,11 +56,11 @@ class RegisterCurrency extends Component {
         e.preventDefault();
 
         let currency = {name: this.state.name, description: this.state.description, value: this.state.value, active: this.state.active};
-        console.log('currency => ' + JSON.stringify(currency));
 
         if(this.state.id === "add") {
-            CurrencyService.createCurrency(currency);
-            this.props.history.push('/list-currency');
+            CurrencyService.createCurrency(currency).then(res => {
+                this.props.history.push('/list-currency');
+            });
         } 
         else {
             CurrencyService.updateCurrency(currency, this.state.id).then(res => {
